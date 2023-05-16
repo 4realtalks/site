@@ -1,4 +1,4 @@
-import { checkAdminId } from "./checkAdminId";
+import { checkAdminId } from "./checkAdminId.js";
 
 const adminIdInput = document.getElementById("floatingPassword");
 const loginButton = document.getElementById("login-button");
