@@ -1,18 +1,13 @@
-const axios = require("axios");
+export async function checkAdminId(adminId) {
+	try {
+		const response = await axios.get(
+			`https://users.roblox.com/v1/users/authenticated`
+		);
+		const userId = adminId.replace("adminuser@", "");
 
-module.exports = function checkAdminId(adminId) {
-	const response = axios
-		.get(`https://users.roblox.com/v1/users/authenticated`)
-		.catch((error) => {
-			console.error(`[ERROR]: ${error}`);
-		});
-	const userId = adminId.replace("adminuser@", "");
-
-	if (response) {
-		if (response.id === userId) {
-			return true;
-		} else {
-			return false;
-		}
+		return response.data.id === userId;
+	} catch (error) {
+		console.error(`[ERROR]: ${error}`);
+		return false;
 	}
-};
+}
